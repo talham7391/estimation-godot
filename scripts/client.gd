@@ -2,6 +2,8 @@ extends Node
 
 var client = null
 
+signal clean_close
+
 func _ready():
 	client = WebSocketClient.new()
 	client.connect("connection_established", self, "on_connection_established")
@@ -21,12 +23,14 @@ func on_connection_established(protocol):
 	print("Connected")
 	print("Sending connection id to server.")
 	var data = {
-		"connectionId": "bob",
+		"connectionId": state.connection_id,
 	}
 	var err = send_obj_to_server(data)
 	print(err)
 
 func on_connection_closed(was_clean_close):
+	if was_clean_close:
+		emit_signal("clean_close")
 	print("Closed - clean: %s" % was_clean_close)
 
 func on_connection_error():
