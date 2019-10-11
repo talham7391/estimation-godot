@@ -1,13 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/scenes/Home.gd" type="Script" id=1]
-[ext_resource path="res://fonts/dream_orphans/dream_orphans.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://scenes/home/LobbyPanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/home/JoinLobbyPopup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Home.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Helvetica.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 52
-extra_spacing_char = 2
+size = 32
 font_data = ExtResource( 2 )
 
 [node name="Home" type="Control"]
@@ -17,96 +14,71 @@ margin_left = 2.05493
 margin_right = 2.05493
 script = ExtResource( 1 )
 
-[node name="Title" type="Label" parent="."]
-anchor_left = 0.5
-anchor_top = 0.15
-anchor_right = 0.5
-anchor_bottom = 0.15
-margin_left = -120.0
-margin_right = 120.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Estimation"
-align = 1
-
-[node name="LobbyPanel" parent="." instance=ExtResource( 3 )]
-visible = false
-
-[node name="CreateRequest" type="HTTPRequest" parent="."]
-
 [node name="CenterContainer" type="CenterContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -149.613
-margin_top = -150.0
-margin_right = 150.387
-margin_bottom = 300.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 75.0
-margin_top = 170.0
-margin_right = 225.0
-margin_bottom = 280.0
-
-[node name="NameLabelContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-editor/display_folded = true
-margin_right = 150.0
-margin_bottom = 14.0
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/NameLabelContainer"]
-margin_right = 150.0
-margin_bottom = 14.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Name"
-
-[node name="NameInputContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 18.0
-margin_right = 150.0
-margin_bottom = 42.0
-
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/NameInputContainer"]
-margin_right = 150.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 150, 0 )
-
-[node name="CreateGameButtonContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 46.0
-margin_right = 150.0
-margin_bottom = 76.0
-custom_constants/margin_top = 10
-
-[node name="CreateGameButton" type="Button" parent="CenterContainer/VBoxContainer/CreateGameButtonContainer"]
-margin_top = 10.0
-margin_right = 150.0
-margin_bottom = 30.0
-text = "Create Game"
-
-[node name="JoinGameButtonContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
-editor/display_folded = true
-margin_top = 80.0
-margin_right = 150.0
-margin_bottom = 110.0
-custom_constants/margin_top = 10
-
-[node name="JoinGameButton" type="Button" parent="CenterContainer/VBoxContainer/JoinGameButtonContainer"]
-margin_top = 10.0
-margin_right = 150.0
-margin_bottom = 30.0
-text = "Join Game"
-
-[node name="JoinLobby" type="CenterContainer" parent="."]
-editor/display_folded = true
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="JoinLobbyPopup" parent="JoinLobby" instance=ExtResource( 4 )]
-margin_left = 193.0
-margin_top = 348.0
-margin_right = 207.0
-margin_bottom = 362.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 125.0
+margin_top = 222.0
+margin_right = 275.0
+margin_bottom = 489.0
+
+[node name="GameTitle" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_right = 150.0
+margin_bottom = 133.0
+custom_constants/margin_bottom = 100
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GameTitle"]
+margin_right = 150.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 1 )
+text = "Estimation"
+
+[node name="NameInputLabel" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 137.0
+margin_right = 150.0
+margin_bottom = 151.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/NameInputLabel"]
+margin_right = 150.0
+margin_bottom = 14.0
+text = "Name"
+
+[node name="NameInput" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 155.0
+margin_right = 150.0
+margin_bottom = 179.0
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/NameInput"]
+margin_right = 150.0
+margin_bottom = 24.0
+
+[node name="CreateGameButton" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 183.0
+margin_right = 150.0
+margin_bottom = 223.0
+custom_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CreateGameButton"]
+margin_top = 20.0
+margin_right = 150.0
+margin_bottom = 40.0
+text = "Create Game"
+
+[node name="JoinGameButton" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 227.0
+margin_right = 150.0
+margin_bottom = 267.0
+custom_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/JoinGameButton"]
+margin_top = 20.0
+margin_right = 150.0
+margin_bottom = 40.0
+text = "Join Game"

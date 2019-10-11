@@ -12,8 +12,9 @@ func _ready():
 	client.connect("data_received", self, "on_data_received")
 	client.connect("server_close_request", self, "on_server_close_request")
 
+func connect_to(party_id):
 	print("Connecting")
-	client.connect_to_url("%s/connect/%s" % [constants.socket_server, state.party_id])
+	client.connect_to_url("%s/connect/%s" % [constants.socket_server, party_id])
 
 func _process(delta):
 	if client != null and client.get_connection_status() != WebSocketClient.CONNECTION_DISCONNECTED:
@@ -23,7 +24,7 @@ func on_connection_established(protocol):
 	print("Connected")
 	print("Sending connection id to server.")
 	var data = {
-		"connectionId": state.connection_id,
+		"connectionId": game_state.connection_id,
 	}
 	var err = send_obj_to_server(data)
 	print(err)
@@ -49,7 +50,7 @@ func send_obj_to_server(data):
 
 func handle_message_from_server(mssg):
 	if mssg["type"] == "CONNECTED_PLAYERS":
-		connected_players.set_connected_players(mssg["players"])
+		game_state.set_connected_players(mssg["players"])
 
 func close_connection():
 	client.disconnect_from_host()
