@@ -1,8 +1,7 @@
 extends Node
 
 var client = null
-
-signal clean_close
+var party_id = null
 
 func _ready():
 	client = WebSocketClient.new()
@@ -12,7 +11,8 @@ func _ready():
 	client.connect("data_received", self, "on_data_received")
 	client.connect("server_close_request", self, "on_server_close_request")
 
-func connect_to(party_id):
+func connect_to(pid):
+	party_id = pid
 	print("Connecting")
 	client.connect_to_url("%s/connect/%s" % [constants.socket_server, party_id])
 
@@ -21,6 +21,7 @@ func _process(delta):
 		client.poll()
 
 func on_connection_established(protocol):
+	game_state.set_connection_status(game_state.CONNECTED, party_id)
 	print("Connected")
 	print("Sending connection id to server.")
 	var data = {
@@ -30,8 +31,7 @@ func on_connection_established(protocol):
 	print(err)
 
 func on_connection_closed(was_clean_close):
-	if was_clean_close:
-		emit_signal("clean_close")
+	game_state.set_connection_status(game_state.DISCONNECTED, party_id)
 	print("Closed - clean: %s" % was_clean_close)
 
 func on_connection_error():
