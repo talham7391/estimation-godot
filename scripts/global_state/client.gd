@@ -51,6 +51,8 @@ func send_obj_to_server(data):
 func handle_message_from_server(mssg):
 	if mssg["type"] == "CONNECTED_PLAYERS":
 		game_state.set_connected_players(mssg["players"])
+	elif mssg["type"] == "PRE_GAME_LOBBY_STATE":
+		game_state.set_pre_game_lobby_state(mssg)
 
 func close_connection():
 	client.disconnect_from_host()

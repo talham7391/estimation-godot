@@ -10,9 +10,6 @@ var create_game_action_instance = null
 var join_game_dialog = preload("res://scenes/JoinGameDialog.tscn")
 var join_game_dialog_instance = null
 
-var client = preload("res://scripts/client.gd")
-var client_instance = null
-
 var lobby_dialog = preload("res://scenes/LobbyDialog.tscn")
 var lobby_dialog_instance = null
 
@@ -53,6 +50,7 @@ func _ready():
 	lobby_dialog_parent = $CenterContainer
 	
 	game_state.connect("connection_status_changed", self, "on_connection_status_changed")
+	game_state.connect("pre_game_lobby_state_changed", self, "change_to_in_game_lobby")
 
 func on_text_changed(text):
 	game_state.connection_id = text
@@ -89,11 +87,7 @@ func on_party_id_joined(party_id):
 		start_client(party_id)
 
 func start_client(party_id):
-	if client_instance != null:
-		return
-	client_instance = client.new()
-	add_child(client_instance)
-	client_instance.connect_to(party_id)
+	client.connect_to(party_id)
 	print(party_id)
 
 func on_connection_status_changed(status, party_id):
@@ -106,16 +100,21 @@ func on_connection_status_changed(status, party_id):
 	elif status == game_state.DISCONNECTED:
 		lobby_dialog_instance.call_deferred("free")
 		lobby_dialog_instance = null
-		if client_instance != null:
-			client_instance.call_deferred("free")
-			client_instance = null
 		enable_menu()
 
 func on_start_game():
-	pass
+	disable_menu()
+	lobby_dialog_instance.call_deferred("free")
+	lobby_dialog_instance = null
+	client.send_obj_to_server({
+		"ready": true,
+	})
+
+func change_to_in_game_lobby(state):
+	get_tree().change_scene("res://scenes/InGameLobby.tscn")
 
 func on_leave_lobby():
-	client_instance.close_connection()
+	client.close_connection()
 
 func disable_menu():
 	for el in buttons_in_menu():

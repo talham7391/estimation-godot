@@ -22,9 +22,12 @@ func set_connected_players(data):
 	emit_signal("connected_players_changed", data)
 
 
-var current_game_phase = null
-signal current_game_phase_changed
+var pre_game_lobby_state = {
+	"playerStatus": [],
+	"playerScores": [],
+}
+signal pre_game_lobby_state_changed
 
-func set_current_game_phase(phase):
-	current_game_phase = phase
-	emit_signal("current_game_phase_changed", phase)
+func set_pre_game_lobby_state(state):
+	pre_game_lobby_state = state
+	emit_signal("pre_game_lobby_state_changed", state)

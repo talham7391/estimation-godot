@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 constants="*res://scripts/global_state/constants.gd"
 game_state="*res://scripts/global_state/game_state.gd"
+client="*res://scripts/global_state/client.gd"
 
 [display]
 
