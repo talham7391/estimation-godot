@@ -19,9 +19,11 @@ func _ready():
 	
 	game_state.connect("connection_status_changed", self, "on_connection_status_changed")
 	game_state.connect("pre_game_lobby_state_changed", self, "on_pre_game_lobby_state_changed")
-	on_pre_game_lobby_state_changed(game_state.pre_game_lobby_state)
+	game_state.connect("received_game_state", self, "change_to_in_game")
+	on_pre_game_lobby_state_changed()
 
-func on_pre_game_lobby_state_changed(state):
+func on_pre_game_lobby_state_changed():
+	var state = game_state.pre_game_lobby_state
 	if "readyStatus" in state and state["readyStatus"] != null:
 		update_ready_status(state["readyStatus"])
 	if "playerScores" in state and state["playerScores"] != null:
@@ -68,7 +70,10 @@ func on_ready():
 	ready_button.disabled = true
 
 func on_start_game():
-	pass
+	client.send_obj_to_server({
+		"type": "START_GAME",
+		"start": true,
+	})
 
 func on_leave():
 	client.close_connection()
@@ -76,3 +81,6 @@ func on_leave():
 func on_connection_status_changed(status, party_id):
 	if status == game_state.DISCONNECTED:
 		get_tree().change_scene("res://scenes/Home.tscn")
+
+func change_to_in_game():
+	get_tree().change_scene("res://scenes/InGame.tscn")

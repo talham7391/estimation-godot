@@ -23,11 +23,46 @@ func set_connected_players(data):
 
 
 var pre_game_lobby_state = {
-	"playerStatus": [],
+	"readyStatus": [],
 	"playerScores": [],
 }
 signal pre_game_lobby_state_changed
 
 func set_pre_game_lobby_state(state):
-	pre_game_lobby_state = state
-	emit_signal("pre_game_lobby_state_changed", state)
+	var keys_to_update = [
+		"readyStatus",
+		"playerScores",
+	]
+	for key in keys_to_update:
+		update_key(pre_game_lobby_state, state, key, "pre_game_lobby_state_changed")
+
+
+var in_game_state = {
+	"done": false,
+	"myCards": [],
+	"playerCards": [],
+	"initialBids": [],
+	"turnOf": null,
+	"phase": null,
+	"finalBids": [],
+	"trumpSuit": null,
+	"playerTricks": [],
+	"turnOrder": [],
+	"currentTrick": [],
+}
+signal done_changed
+signal my_cards_changed
+signal received_game_state
+
+func set_game_state(state):
+	update_key(in_game_state, state, "done", "done_changed")
+	update_key(in_game_state, state, "myCards", "my_cards_changed")
+	emit_signal("received_game_state")
+
+
+func update_key(dest, src, key, signal_on_change):
+	if src[key] != null:
+		dest[key] = src[key]
+		emit_signal(signal_on_change)
+	return dest
+

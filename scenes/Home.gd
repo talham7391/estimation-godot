@@ -51,6 +51,7 @@ func _ready():
 	
 	game_state.connect("connection_status_changed", self, "on_connection_status_changed")
 	game_state.connect("pre_game_lobby_state_changed", self, "change_to_in_game_lobby")
+	game_state.connect("received_game_state", self, "change_to_in_game")
 
 func on_text_changed(text):
 	game_state.connection_id = text
@@ -110,8 +111,11 @@ func on_start_game():
 		"ready": true,
 	})
 
-func change_to_in_game_lobby(state):
+func change_to_in_game_lobby():
 	get_tree().change_scene("res://scenes/InGameLobby.tscn")
+
+func change_to_in_game():
+	get_tree().change_scene("res://scenes/InGame.tscn")
 
 func on_leave_lobby():
 	client.close_connection()

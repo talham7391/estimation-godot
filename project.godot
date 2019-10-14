@@ -31,6 +31,10 @@ window/size/width=400
 window/size/height=711
 window/handheld/orientation="portrait"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 environment/default_clear_color=Color( 0.32549, 0.32549, 0.32549, 1 )
