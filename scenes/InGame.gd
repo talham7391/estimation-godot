@@ -1,9 +1,8 @@
-extends Node2D
+extends Control
 
 func _ready():
-	game_state.connect("my_cards_changed", self, "on_my_cards_changed")
-	on_my_cards_changed()
+	game_state.connect("turn_order_changed", self, "on_turn_order_changed")
+	on_turn_order_changed()
 
-func on_my_cards_changed():
-	var cards = game_state.in_game_state["myCards"]
-	print(cards)
+func on_turn_order_changed():
+	print(game_state.in_game_state["turnOrder"])

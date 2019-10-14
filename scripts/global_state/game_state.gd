@@ -52,11 +52,13 @@ var in_game_state = {
 }
 signal done_changed
 signal my_cards_changed
+signal turn_order_changed
 signal received_game_state
 
 func set_game_state(state):
 	update_key(in_game_state, state, "done", "done_changed")
 	update_key(in_game_state, state, "myCards", "my_cards_changed")
+	update_key(in_game_state, state, "turnOrder", "turn_order_changed")
 	emit_signal("received_game_state")
 
 
