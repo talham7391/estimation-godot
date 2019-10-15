@@ -53,12 +53,18 @@ var in_game_state = {
 signal done_changed
 signal my_cards_changed
 signal turn_order_changed
+signal turn_of_changed
 signal received_game_state
 
 func set_game_state(state):
-	update_key(in_game_state, state, "done", "done_changed")
-	update_key(in_game_state, state, "myCards", "my_cards_changed")
-	update_key(in_game_state, state, "turnOrder", "turn_order_changed")
+	var info_pairs = [
+		{"info": "done", "signal": "done_changed"},
+		{"info": "myCards", "signal": "my_cards_changed"},
+		{"info": "turnOrder", "signal": "turn_order_changed"},
+		{"info": "turnOf", "signal": "turn_of_changed"},
+	]
+	for pair in info_pairs:
+		update_key(in_game_state, state, pair["info"], pair["signal"])
 	emit_signal("received_game_state")
 
 
