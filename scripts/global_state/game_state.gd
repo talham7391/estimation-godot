@@ -53,7 +53,9 @@ var in_game_state = {
 signal done_changed
 signal my_cards_changed
 signal turn_order_changed
+signal phase_changed
 signal turn_of_changed
+signal initial_bids_changed
 signal received_game_state
 
 func set_game_state(state):
@@ -61,6 +63,8 @@ func set_game_state(state):
 		{"info": "done", "signal": "done_changed"},
 		{"info": "myCards", "signal": "my_cards_changed"},
 		{"info": "turnOrder", "signal": "turn_order_changed"},
+		{"info": "phase", "signal": "phase_changed"},
+		{"info": "initialBids", "signal": "initial_bids_changed"},
 		{"info": "turnOf", "signal": "turn_of_changed"},
 	]
 	for pair in info_pairs:
