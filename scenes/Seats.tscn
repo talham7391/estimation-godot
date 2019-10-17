@@ -120,7 +120,7 @@ margin_bottom = 22.0
 text = "Ahmed"
 align = 1
 
-[node name="BottomInitialBid" type="PanelContainer" parent="."]
+[node name="BottomBid" type="PanelContainer" parent="."]
 editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 1.0
@@ -132,7 +132,7 @@ margin_right = 40.0
 margin_bottom = -30.0
 custom_styles/panel = SubResource( 5 )
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomInitialBid"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomBid"]
 margin_right = 80.0
 margin_bottom = 30.0
 custom_constants/margin_right = 5
@@ -140,7 +140,7 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="BottomInitialBid/MarginContainer"]
+[node name="Label" type="Label" parent="BottomBid/MarginContainer"]
 margin_left = 5.0
 margin_top = 8.0
 margin_right = 75.0
@@ -149,7 +149,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bid:"
 align = 1
 
-[node name="TopInitialBid" type="PanelContainer" parent="."]
+[node name="TopBid" type="PanelContainer" parent="."]
 editor/display_folded = true
 anchor_left = 0.5
 anchor_right = 0.5
@@ -158,7 +158,7 @@ margin_top = 30.0
 margin_right = 40.0
 custom_styles/panel = SubResource( 6 )
 
-[node name="MarginContainer" type="MarginContainer" parent="TopInitialBid"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBid"]
 margin_right = 80.0
 margin_bottom = 24.0
 custom_constants/margin_right = 5
@@ -166,7 +166,7 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="TopInitialBid/MarginContainer"]
+[node name="Label" type="Label" parent="TopBid/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 75.0
@@ -175,7 +175,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bid:"
 align = 1
 
-[node name="LeftInitialBid" type="PanelContainer" parent="."]
+[node name="LeftBid" type="PanelContainer" parent="."]
 editor/display_folded = true
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -184,7 +184,7 @@ margin_right = 80.0
 margin_bottom = -65.0
 custom_styles/panel = SubResource( 7 )
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftInitialBid"]
+[node name="MarginContainer" type="MarginContainer" parent="LeftBid"]
 margin_right = 80.0
 margin_bottom = 30.0
 custom_constants/margin_right = 5
@@ -192,7 +192,7 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="LeftInitialBid/MarginContainer"]
+[node name="Label" type="Label" parent="LeftBid/MarginContainer"]
 margin_left = 5.0
 margin_top = 8.0
 margin_right = 75.0
@@ -201,7 +201,7 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bid:"
 align = 1
 
-[node name="RightInitialBid" type="PanelContainer" parent="."]
+[node name="RightBid" type="PanelContainer" parent="."]
 editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 0.5
@@ -212,7 +212,7 @@ margin_top = -95.0
 margin_bottom = -65.0
 custom_styles/panel = SubResource( 8 )
 
-[node name="MarginContainer" type="MarginContainer" parent="RightInitialBid"]
+[node name="MarginContainer" type="MarginContainer" parent="RightBid"]
 margin_right = 80.0
 margin_bottom = 30.0
 custom_constants/margin_right = 5
@@ -220,7 +220,7 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="RightInitialBid/MarginContainer"]
+[node name="Label" type="Label" parent="RightBid/MarginContainer"]
 margin_left = 5.0
 margin_top = 8.0
 margin_right = 75.0

@@ -56,6 +56,8 @@ signal turn_order_changed
 signal phase_changed
 signal turn_of_changed
 signal initial_bids_changed
+signal trump_suit_changed
+signal final_bids_changed
 signal received_game_state
 
 func set_game_state(state):
@@ -65,6 +67,8 @@ func set_game_state(state):
 		{"info": "turnOrder", "signal": "turn_order_changed"},
 		{"info": "phase", "signal": "phase_changed"},
 		{"info": "initialBids", "signal": "initial_bids_changed"},
+		{"info": "trumpSuit", "signal": "trump_suit_changed"},
+		{"info": "finalBids", "signal": "final_bids_changed"},
 		{"info": "turnOf", "signal": "turn_of_changed"},
 	]
 	for pair in info_pairs:

@@ -2,6 +2,7 @@ extends Node
 
 var initial_bid_input = preload("res://scripts/actions/initial_bid_input.gd")
 var declare_trump_input = preload("res://scripts/actions/declare_trump_input.gd")
+var final_bid_input = preload("res://scripts/actions/final_bid_input.gd")
 var dispatched = null
 
 var dispatch_map = {
@@ -32,7 +33,8 @@ func dispatch_declaring_trump():
 	add_child(dispatched)
 
 func dispatch_final_bidding():
-	print("final bidding dispatched")
+	dispatched = final_bid_input.new()
+	add_child(dispatched)
 
 func dispatch_trick_taking():
 	print("trick taking dispatched")

@@ -29,6 +29,6 @@ func on_button_pressed(input):
 		client.send_obj_to_server({"type": "PASS"})
 	else:
 		client.send_obj_to_server({
-			"type": "INITIAL_BID",
+			"type": "BID",
 			"bid": input,
 		})
