@@ -49,8 +49,8 @@ func insure_cards_in_hand(cards):
 			"data": card,
 			"sprite": card_sprite,
 		})
-		card_sprite.scale.x = 0.55
-		card_sprite.scale.y = 0.55
+		card_sprite.scale.x = 0.45
+		card_sprite.scale.y = 0.45
 		card_sprite.add_to_group(CARDS_GROUP)
 		add_child(card_sprite)
 	sort_cards()

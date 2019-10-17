@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Seats.gd" type="Script" id=1]
 
@@ -13,6 +13,14 @@ bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+
+[sub_resource type="StyleBoxFlat" id=8]
 
 [node name="Seats" type="Control"]
 anchor_right = 1.0
@@ -110,4 +118,113 @@ margin_top = 8.0
 margin_right = 130.0
 margin_bottom = 22.0
 text = "Ahmed"
+align = 1
+
+[node name="BottomInitialBid" type="PanelContainer" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -60.0
+margin_right = 40.0
+margin_bottom = -30.0
+custom_styles/panel = SubResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="BottomInitialBid"]
+margin_right = 80.0
+margin_bottom = 30.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="BottomInitialBid/MarginContainer"]
+margin_left = 5.0
+margin_top = 8.0
+margin_right = 75.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Bid:"
+align = 1
+
+[node name="TopInitialBid" type="PanelContainer" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_top = 30.0
+margin_right = 40.0
+custom_styles/panel = SubResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="TopInitialBid"]
+margin_right = 80.0
+margin_bottom = 24.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="TopInitialBid/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 75.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Bid:"
+align = 1
+
+[node name="LeftInitialBid" type="PanelContainer" parent="."]
+editor/display_folded = true
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -95.0
+margin_right = 80.0
+margin_bottom = -65.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftInitialBid"]
+margin_right = 80.0
+margin_bottom = 30.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="LeftInitialBid/MarginContainer"]
+margin_left = 5.0
+margin_top = 8.0
+margin_right = 75.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Bid:"
+align = 1
+
+[node name="RightInitialBid" type="PanelContainer" parent="."]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -95.0
+margin_bottom = -65.0
+custom_styles/panel = SubResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="RightInitialBid"]
+margin_right = 80.0
+margin_bottom = 30.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="RightInitialBid/MarginContainer"]
+margin_left = 5.0
+margin_top = 8.0
+margin_right = 75.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Bid:"
 align = 1
