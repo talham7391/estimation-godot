@@ -86,7 +86,7 @@ func on_turn_order_changed():
 	var turn_order = game_state.in_game_state["turnOrder"]
 	if not turn_order:
 		return
-	var shifted_order = put_me_first(turn_order)
+	var shifted_order = utils.put_me_first(turn_order)
 	for i in range(labels_clockwise.size()):
 		if i >= shifted_order.size():
 			labels_clockwise[i].text = "[ Empty ]"
@@ -95,7 +95,9 @@ func on_turn_order_changed():
 
 func on_turn_of_changed():
 	var turn_of = game_state.in_game_state["turnOf"]
-	var shifted_order = put_me_first(game_state.in_game_state["turnOrder"])
+	if turn_of == null:
+		return
+	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
 	for i in range(styles_clockwise.size()):
 		if i < shifted_order.size() and shifted_order[i]["connectionId"] == turn_of["connectionId"]:
 			styles_clockwise[i].bg_color = Color(TURN_COLOR)
@@ -106,7 +108,7 @@ func on_bids_changed():
 	for c in bids_containers:
 		c.hide()
 	var turn_of = game_state.in_game_state["turnOf"]
-	var shifted_order = put_me_first(game_state.in_game_state["turnOrder"])
+	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
 	for i in range(shifted_order.size()):
 		update_bid(shifted_order[i]["connectionId"], bids_containers[i], bids_clockwise[i], bids_styles_clockwise[i])
 
@@ -126,14 +128,3 @@ func update_bid(player, container, label, style):
 			else:
 				style.bg_color = Color(BID_COLOR)
 			break
-
-func put_me_first(turn_order):
-	if not turn_order:
-		return turn_order
-	var shifted_order = turn_order.duplicate()
-	for i in range(4):
-		if shifted_order[0]["connectionId"] == game_state.connection_id:
-			break
-		else:
-			shifted_order.push_back(shifted_order.pop_front())
-	return shifted_order

@@ -26,7 +26,6 @@ margin_right = 141.0
 margin_bottom = 185.0
 
 [node name="InitialBidLabel" type="MarginContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
-editor/display_folded = true
 margin_right = 134.0
 margin_bottom = 30.0
 custom_constants/margin_top = 6
@@ -36,7 +35,7 @@ custom_constants/margin_bottom = 10
 margin_top = 6.0
 margin_right = 134.0
 margin_bottom = 20.0
-text = "Initial Bid"
+text = "Bid"
 align = 1
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]

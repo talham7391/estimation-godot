@@ -3,6 +3,7 @@ extends Node
 var initial_bid_input = preload("res://scripts/actions/initial_bid_input.gd")
 var declare_trump_input = preload("res://scripts/actions/declare_trump_input.gd")
 var final_bid_input = preload("res://scripts/actions/final_bid_input.gd")
+var play_card_input = preload("res://scripts/actions/play_card_input.gd")
 var dispatched = null
 
 var dispatch_map = {
@@ -20,6 +21,8 @@ func run_dispatch():
 	if dispatched != null:
 		dispatched.call_deferred("free")
 		dispatched = null
+	if game_state.in_game_state["turnOf"] == null:
+		return
 	if game_state.in_game_state["turnOf"]["connectionId"] == game_state.connection_id:
 		var phase = game_state.in_game_state["phase"]
 		call(dispatch_map[phase])
@@ -37,4 +40,6 @@ func dispatch_final_bidding():
 	add_child(dispatched)
 
 func dispatch_trick_taking():
-	print("trick taking dispatched")
+	dispatched = play_card_input.new()
+	add_child(dispatched)
+

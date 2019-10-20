@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/cards/CLUBS_FIVE.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Card.gd" type="Script" id=2]
+
+[node name="Card" type="TextureButton"]
+margin_left = -150.0
+margin_top = -217.0
+rect_pivot_offset = Vector2( 150, 217 )
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )

@@ -1,5 +1,7 @@
 extends Control
 
+var Card = preload("res://scenes/Card.tscn")
+
 var offset = 0.0
 
 var current_cards_in_hand = []
@@ -25,49 +27,40 @@ func _process(delta):
 	if last + offset < middle:
 		offset = middle - last
 	for i in range(current_cards_in_hand.size()):
-		var sprite = current_cards_in_hand[i]["sprite"]
-		sprite.z_index = i
+		var instance = current_cards_in_hand[i]["instance"]
 		var card_pos = float(start + i) + offset
-		sprite.position = transform_pos(card_pos)
+		instance.set_position(transform_pos(instance, card_pos))
 
 func _input(event):
 	if event is InputEventScreenDrag:
 		offset += event.relative.x / 65.0
 
-func transform_pos(input):
+func transform_pos(instance, input):
 	var with_spacing = input * 45.0
-	return Vector2(with_spacing, 0)
+	return Vector2(instance.get_pivot_offset().x * -1 + with_spacing, instance.get_pivot_offset().y * -1)
 
 func insure_cards_in_hand(cards):
 	purge_cards(cards)
+	cards.sort_custom(self, "card_sort_func")
 	for card in cards:
 		if is_card_in_hand(card):
 			continue
-		var card_sprite = Sprite.new()
-		card_sprite.texture = load("res://assets/cards/%s_%s.png" % [card["suit"], card["rank"]])
+		var card_instance = Card.instance()
+		card_instance.set_card(card["suit"], card["rank"])
 		current_cards_in_hand.append({
 			"data": card,
-			"sprite": card_sprite,
+			"instance": card_instance,
 		})
-		card_sprite.scale.x = 0.45
-		card_sprite.scale.y = 0.45
-		card_sprite.add_to_group(CARDS_GROUP)
-		add_child(card_sprite)
-	sort_cards()
+		var scale = 0.45
+		card_instance.set_scale(Vector2(scale, scale))
+		card_instance.add_to_group(CARDS_GROUP)
+		add_child(card_instance)
+		card_instance.connect("card_pressed", self, "on_card_pressed", [card])
 
 func purge_cards(cards):
-	var new_cards = []
 	for c in current_cards_in_hand:
-		var found = false
-		for card in cards:
-			if c["data"] == card:
-				found = true
-				break
-		if found:
-			new_cards.append(c)
-		else:
-			c["sprite"].call_deferred("free")
-	current_cards_in_hand = new_cards
+		c["instance"].call_deferred("free")
+	current_cards_in_hand = []
 
 func is_card_in_hand(card):
 	for c in current_cards_in_hand:
@@ -75,12 +68,7 @@ func is_card_in_hand(card):
 			return true
 	return false
 
-func sort_cards():
-	current_cards_in_hand.sort_custom(self, "card_sort_func")
-
-func card_sort_func(a, b):
-	var c1 = a["data"]
-	var c2 = b["data"]
+func card_sort_func(c1, c2):
 	var suit_values = {
 		"SPADES": 0,
 		"HEARTS": 1,
@@ -105,3 +93,6 @@ func card_sort_func(a, b):
 	var c1_val = 13 * suit_values[c1["suit"]] + rank_values[c1["rank"]]
 	var c2_val = 13 * suit_values[c2["suit"]] + rank_values[c2["rank"]]
 	return c1_val < c2_val
+
+func on_card_pressed(card):
+	game_state.emit_signal("play_card", card["suit"], card["rank"])

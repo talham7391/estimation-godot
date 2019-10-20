@@ -38,7 +38,6 @@ func set_pre_game_lobby_state(state):
 
 
 var in_game_state = {
-	"done": false,
 	"myCards": [],
 	"playerCards": [],
 	"initialBids": [],
@@ -50,7 +49,6 @@ var in_game_state = {
 	"turnOrder": [],
 	"currentTrick": [],
 }
-signal done_changed
 signal my_cards_changed
 signal turn_order_changed
 signal phase_changed
@@ -58,17 +56,18 @@ signal turn_of_changed
 signal initial_bids_changed
 signal trump_suit_changed
 signal final_bids_changed
+signal current_trick_changed
 signal received_game_state
 
 func set_game_state(state):
 	var info_pairs = [
-		{"info": "done", "signal": "done_changed"},
 		{"info": "myCards", "signal": "my_cards_changed"},
 		{"info": "turnOrder", "signal": "turn_order_changed"},
 		{"info": "phase", "signal": "phase_changed"},
 		{"info": "initialBids", "signal": "initial_bids_changed"},
 		{"info": "trumpSuit", "signal": "trump_suit_changed"},
 		{"info": "finalBids", "signal": "final_bids_changed"},
+		{"info": "currentTrick", "signal": "current_trick_changed"},
 		{"info": "turnOf", "signal": "turn_of_changed"},
 	]
 	for pair in info_pairs:
@@ -82,3 +81,5 @@ func update_key(dest, src, key, signal_on_change):
 		emit_signal(signal_on_change)
 	return dest
 
+
+signal play_card
