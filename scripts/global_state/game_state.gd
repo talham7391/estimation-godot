@@ -60,6 +60,20 @@ signal current_trick_changed
 signal player_tricks_changed
 signal received_game_state
 
+func reset_game_state():
+	in_game_state = {
+		"myCards": [],
+		"playerCards": [],
+		"initialBids": [],
+		"turnOf": null,
+		"phase": null,
+		"finalBids": [],
+		"trumpSuit": null,
+		"playerTricks": [],
+		"turnOrder": [],
+		"currentTrick": [],
+	}
+
 func set_game_state(state):
 	var info_pairs = [
 		{"info": "myCards", "signal": "my_cards_changed"},

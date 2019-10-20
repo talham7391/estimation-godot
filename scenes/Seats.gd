@@ -145,6 +145,8 @@ func update_bid(player, container, label, style):
 			break
 
 func on_player_tricks_changed():
+	for tw in tricks_won_clockwise:
+		tw.text = "x0"
 	var player_tricks = game_state.in_game_state["playerTricks"]
 	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
 	for i in range(shifted_order.size()):
