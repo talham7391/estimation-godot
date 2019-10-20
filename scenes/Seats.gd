@@ -31,6 +31,11 @@ onready var left_bid_style_box = $LeftBid.get("custom_styles/panel")
 onready var top_bid_style_box = $TopBid.get("custom_styles/panel")
 onready var right_bid_style_box = $RightBid.get("custom_styles/panel")
 
+onready var bottom_tricks_won = $BottomTricks/NumWon/Label
+onready var left_tricks_won = $LeftTricks/NumWon/Label
+onready var top_tricks_won = $TopTricks/NumWon/Label
+onready var right_tricks_won = $RightTricks/NumWon/Label
+
 onready var labels_clockwise = [
 	bottom_name_label,
 	left_name_label,
@@ -66,6 +71,13 @@ onready var bids_styles_clockwise = [
 	right_bid_style_box,
 ]
 
+onready var tricks_won_clockwise = [
+	bottom_tricks_won,
+	left_tricks_won,
+	top_tricks_won,
+	right_tricks_won,
+]
+
 func _ready():
 	bottom_style_box.bg_color = Color(WAIT_COLOR)
 	left_style_box.bg_color = Color(WAIT_COLOR)
@@ -81,6 +93,9 @@ func _ready():
 	game_state.connect("initial_bids_changed", self, "on_bids_changed")
 	game_state.connect("final_bids_changed", self, "on_bids_changed")
 	on_bids_changed()
+	
+	game_state.connect("player_tricks_changed", self, "on_player_tricks_changed")
+	on_player_tricks_changed()
 
 func on_turn_order_changed():
 	var turn_order = game_state.in_game_state["turnOrder"]
@@ -128,3 +143,13 @@ func update_bid(player, container, label, style):
 			else:
 				style.bg_color = Color(BID_COLOR)
 			break
+
+func on_player_tricks_changed():
+	var player_tricks = game_state.in_game_state["playerTricks"]
+	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
+	for i in range(shifted_order.size()):
+		tricks_won_clockwise[i].text = "x0"
+		for pt in player_tricks:
+			if pt["player"]["connectionId"] == shifted_order[i]["connectionId"]:
+				tricks_won_clockwise[i].text = "x%s" % pt["numWon"]
+				break

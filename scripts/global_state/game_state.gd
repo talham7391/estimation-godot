@@ -57,6 +57,7 @@ signal initial_bids_changed
 signal trump_suit_changed
 signal final_bids_changed
 signal current_trick_changed
+signal player_tricks_changed
 signal received_game_state
 
 func set_game_state(state):
@@ -69,6 +70,7 @@ func set_game_state(state):
 		{"info": "finalBids", "signal": "final_bids_changed"},
 		{"info": "currentTrick", "signal": "current_trick_changed"},
 		{"info": "turnOf", "signal": "turn_of_changed"},
+		{"info": "playerTricks", "signal": "player_tricks_changed"},
 	]
 	for pair in info_pairs:
 		update_key(in_game_state, state, pair["info"], pair["signal"])

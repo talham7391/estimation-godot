@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Seats.gd" type="Script" id=1]
+[ext_resource path="res://assets/icons/trick_icon.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
@@ -25,8 +26,8 @@ bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
 [node name="Seats" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 1.10059
-margin_bottom = 1.10059
+margin_top = 0.782749
+margin_bottom = 0.782776
 script = ExtResource( 1 )
 
 [node name="Bottom" type="PanelContainer" parent="."]
@@ -228,3 +229,110 @@ margin_bottom = 22.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Bid:"
 align = 1
+
+[node name="BottomTricks" type="HBoxContainer" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 75.0
+margin_top = -40.0
+
+[node name="TextureRect" type="TextureRect" parent="BottomTricks"]
+margin_right = 24.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+
+[node name="NumWon" type="MarginContainer" parent="BottomTricks"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 40.0
+custom_constants/margin_left = 5
+
+[node name="Label" type="Label" parent="BottomTricks/NumWon"]
+margin_left = 5.0
+margin_top = 13.0
+margin_right = 24.0
+margin_bottom = 27.0
+text = "x 0"
+
+[node name="LeftTricks" type="HBoxContainer" parent="."]
+editor/display_folded = true
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -135.0
+margin_bottom = -135.0
+
+[node name="TextureRect" type="TextureRect" parent="LeftTricks"]
+margin_right = 24.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+
+[node name="NumWon" type="MarginContainer" parent="LeftTricks"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 32.0
+custom_constants/margin_left = 5
+
+[node name="Label" type="Label" parent="LeftTricks/NumWon"]
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 24.0
+margin_bottom = 23.0
+text = "x 0"
+
+[node name="TopTricks" type="HBoxContainer" parent="."]
+editor/display_folded = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 75.0
+margin_top = 5.0
+
+[node name="TextureRect" type="TextureRect" parent="TopTricks"]
+margin_right = 24.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+
+[node name="NumWon" type="MarginContainer" parent="TopTricks"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 32.0
+custom_constants/margin_left = 5
+
+[node name="Label" type="Label" parent="TopTricks/NumWon"]
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 24.0
+margin_bottom = 23.0
+text = "x 0"
+
+[node name="RightTricks" type="HBoxContainer" parent="."]
+editor/display_folded = true
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -135.0
+margin_right = -40.0
+margin_bottom = -103.0
+
+[node name="TextureRect" type="TextureRect" parent="RightTricks"]
+margin_right = 24.0
+margin_bottom = 32.0
+texture = ExtResource( 2 )
+
+[node name="NumWon" type="MarginContainer" parent="RightTricks"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 32.0
+custom_constants/margin_left = 5
+
+[node name="Label" type="Label" parent="RightTricks/NumWon"]
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 24.0
+margin_bottom = 23.0
+text = "x 0"
