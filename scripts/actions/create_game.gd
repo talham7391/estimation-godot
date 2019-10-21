@@ -10,12 +10,12 @@ func _ready():
 	http_request.connect("request_completed", self, "on_request_completed")
 
 func on_request_completed(result, response_code, headers, body):
-	if response_code == HTTPClient.RESPONSE_OK:
+	if result != HTTPRequest.RESULT_SUCCESS || response_code != HTTPClient.RESPONSE_OK:
+		emit_signal("party_id", null)
+	else:
 		var json = JSON.parse(body.get_string_from_utf8())
 		var data = json.result
 		emit_signal("party_id", data["partyId"])
-	else:
-		emit_signal("party_id", null)
 
 func create_game():
 	http_request.request(

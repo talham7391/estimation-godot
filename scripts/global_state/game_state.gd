@@ -47,6 +47,7 @@ var in_game_state = {
 	"trumpSuit": null,
 	"playerTricks": [],
 	"turnOrder": [],
+	"previousTrick": [],
 	"currentTrick": [],
 }
 signal my_cards_changed
@@ -56,6 +57,7 @@ signal turn_of_changed
 signal initial_bids_changed
 signal trump_suit_changed
 signal final_bids_changed
+signal previous_trick_changed
 signal current_trick_changed
 signal player_tricks_changed
 signal received_game_state
@@ -71,6 +73,7 @@ func reset_game_state():
 		"trumpSuit": null,
 		"playerTricks": [],
 		"turnOrder": [],
+		"previousTrick": [],
 		"currentTrick": [],
 	}
 
@@ -82,6 +85,7 @@ func set_game_state(state):
 		{"info": "initialBids", "signal": "initial_bids_changed"},
 		{"info": "trumpSuit", "signal": "trump_suit_changed"},
 		{"info": "finalBids", "signal": "final_bids_changed"},
+		{"info": "previousTrick", "signal": "previous_trick_changed"},
 		{"info": "currentTrick", "signal": "current_trick_changed"},
 		{"info": "turnOf", "signal": "turn_of_changed"},
 		{"info": "playerTricks", "signal": "player_tricks_changed"},

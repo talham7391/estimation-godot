@@ -25,6 +25,7 @@ constants="*res://scripts/global_state/constants.gd"
 game_state="*res://scripts/global_state/game_state.gd"
 client="*res://scripts/global_state/client.gd"
 utils="*res://scripts/global_state/utils.gd"
+NotificationManager="*res://scenes/NotificationManager.tscn"
 
 [display]
 
@@ -38,5 +39,5 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-environment/default_clear_color=Color( 0.32549, 0.32549, 0.32549, 1 )
+environment/default_clear_color=Color( 0.105882, 0.282353, 0.376471, 1 )
 environment/default_environment="res://default_env.tres"

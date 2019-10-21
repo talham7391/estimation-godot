@@ -71,6 +71,8 @@ func on_party_id_created(party_id):
 	enable_menu()
 	if party_id != null:
 		start_client(party_id)
+	else:
+		NotificationManager.display_notification("Error creating game.")
 
 func on_join_game_button_pressed():
 	if join_game_dialog_instance != null:

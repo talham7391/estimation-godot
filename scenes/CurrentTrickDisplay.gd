@@ -23,6 +23,8 @@ func _ready():
 func on_current_trick_changed():
 	clear_current_trick_group()
 	var current_trick = game_state.in_game_state["currentTrick"]
+	if current_trick.size() == 0:
+		current_trick = game_state.in_game_state["previousTrick"]
 	display_cards_on_table(current_trick)
 
 func clear_current_trick_group():
