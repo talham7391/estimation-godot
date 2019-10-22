@@ -33,7 +33,7 @@ func on_leave():
 	emit_signal("leave")
 
 func on_connection_status_changed(status, party_id):
-	party_id_label.text = "Party ID: %s" % party_id
+	party_id_label.text = "%s" % party_id
 
 func on_connected_players_changed(players):
 	update_names(players)
@@ -49,4 +49,4 @@ func update_names(players):
 		label.add_to_group(PLAYER_NAMES)
 
 func update_start_game_button(players):
-	start_game_button.disabled = len(players) != 4
+	start_game_button.disabled = len(players) != 1
