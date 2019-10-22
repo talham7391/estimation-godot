@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/SimpleEntry.gd" type="Script" id=1]
+[ext_resource path="res://fonts/text.tres" type="DynamicFont" id=2]
+
+[node name="SimpleEntry" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/margin_bottom = 10
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 40.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 2 )
+text = "Test"
+align = 1

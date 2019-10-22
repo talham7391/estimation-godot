@@ -1,5 +1,7 @@
 extends PanelContainer
 
+var simple_entry_scene = preload("res://scenes/SimpleEntry.tscn")
+
 var party_id_label = null
 var player_container = null
 var start_game_button = null
@@ -11,10 +13,10 @@ signal start_game
 signal leave
 
 func _ready():
-	party_id_label = $VBoxContainer/PartyIdLabel/Label
-	start_game_button = $VBoxContainer/StartGameButton/Button
-	leave_button = $VBoxContainer/LeaveButton/Button
-	player_container = $VBoxContainer/PlayersContainer/VBoxContainer
+	party_id_label = $MarginContainer/VBoxContainer/PartyIdLabel/Label
+	start_game_button = $MarginContainer/VBoxContainer/StartGameButton/Button
+	leave_button = $MarginContainer/VBoxContainer/LeaveButton/Button
+	player_container = $MarginContainer/VBoxContainer/PlayersContainer/VBoxContainer
 	
 	start_game_button.connect("pressed", self, "on_start_game")
 	leave_button.connect("pressed", self, "on_leave")
@@ -41,11 +43,10 @@ func update_names(players):
 	for p in get_tree().get_nodes_in_group(PLAYER_NAMES):
 		p.free()
 	for p in players:
-		var label = Label.new()
-		label.text = p["connectionId"]
-		label.align = HALIGN_CENTER
-		label.add_to_group(PLAYER_NAMES)
+		var label = simple_entry_scene.instance()
 		player_container.add_child(label)
+		label.set_text(p["connectionId"])
+		label.add_to_group(PLAYER_NAMES)
 
 func update_start_game_button(players):
 	start_game_button.disabled = len(players) != 4
