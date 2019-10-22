@@ -13,7 +13,6 @@ func _ready():
 
 func connect_to(pid):
 	party_id = pid
-	print("Connecting")
 	client.connect_to_url("%s/connect/%s" % [constants.socket_server, party_id])
 
 func _process(delta):
@@ -22,20 +21,16 @@ func _process(delta):
 
 func on_connection_established(protocol):
 	game_state.set_connection_status(game_state.CONNECTED, party_id)
-	print("Connected")
-	print("Sending connection id to server.")
 	var data = {
 		"connectionId": game_state.connection_id,
 	}
 	var err = send_obj_to_server(data)
-	print(err)
 
 func on_connection_closed(was_clean_close):
 	game_state.set_connection_status(game_state.DISCONNECTED, party_id)
-	print("Closed - clean: %s" % was_clean_close)
 
 func on_connection_error():
-	print("Error")
+	NotificationManager.display_notification("Connection error.")
 
 func on_data_received():
 	var data = client.get_peer(1).get_packet()
@@ -43,7 +38,7 @@ func on_data_received():
 	handle_message_from_server(json.result)
 
 func on_server_close_request(code, reason):
-	print("Server requested close because: %s" % reason)
+	pass
 	
 func send_obj_to_server(data):
 	return client.get_peer(1).put_packet(JSON.print(data).to_utf8())

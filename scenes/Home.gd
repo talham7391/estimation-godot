@@ -91,7 +91,6 @@ func on_party_id_joined(party_id):
 
 func start_client(party_id):
 	client.connect_to(party_id)
-	print(party_id)
 
 func on_connection_status_changed(status, party_id):
 	if status == game_state.CONNECTED:

@@ -1,6 +1,6 @@
 extends MarginContainer
 
-onready var label = $PanelContainer/MarginContainer/Label
+onready var label = $PanelContainer/HBoxContainer/MarginContainer/Label
 
 func set_text(text):
 	label.text = text

@@ -9,11 +9,11 @@ signal party_id
 var current_party_id = null
 
 func _ready():
-	party_id_input = $VBoxContainer/PartyIdInput/LineEdit
+	party_id_input = $MarginContainer/VBoxContainer/PartyIdInput/LineEdit
 	party_id_input.connect("text_changed", self, "on_party_id_text_changed")
-	join_game_button = $VBoxContainer/JoinGameButton/Button
+	join_game_button = $MarginContainer/VBoxContainer/JoinGameButton/Button
 	join_game_button.connect("pressed", self, "on_join_game_pressed")
-	cancel_join_button = $VBoxContainer/CancelJoinButton/Button
+	cancel_join_button = $MarginContainer/VBoxContainer/CancelJoinButton/Button
 	cancel_join_button.connect("pressed", self, "on_cancel_join_pressed")
 
 func on_party_id_text_changed(text):
