@@ -1,23 +1,23 @@
 extends Control
 
 onready var number_buttons = [
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/zero,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/one,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/two,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/three,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/four,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/five,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/six,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/seven,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/eight,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/nine,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/ten,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/eleven,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/twelve,
-	$CenterContainer/PanelContainer/VBoxContainer/GridContainer/thirteen,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/zero,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/one,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/two,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/three,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/four,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/five,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/six,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/seven,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/eight,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/nine,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/ten,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/eleven,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/twelve,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/thirteen,
 ]
 
-onready var pass_button = $CenterContainer/PanelContainer/VBoxContainer/PassButton/Button
+onready var pass_button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/PassButton/Button
 
 signal button_pressed
 

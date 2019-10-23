@@ -1,338 +1,381 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/Seats.gd" type="Script" id=1]
-[ext_resource path="res://assets/icons/trick_icon.png" type="Texture" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+[ext_resource path="res://fonts/text.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/small_number.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/TurnIndicator.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color( 0.0544612, 0.133583, 0.175781, 1 )
+corner_radius_top_left = 70
+corner_radius_top_right = 70
+corner_radius_bottom_right = 70
+corner_radius_bottom_left = 70
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color( 0.0544612, 0.133583, 0.175781, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-
-[sub_resource type="StyleBoxFlat" id=6]
-
-[sub_resource type="StyleBoxFlat" id=7]
-
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0156863, 0.439216, 0.980392, 1 )
 
 [node name="Seats" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 0.782749
-margin_bottom = 0.782776
-script = ExtResource( 1 )
+margin_left = 1.59833
+margin_top = -0.815518
+margin_right = 1.59833
+margin_bottom = -0.815491
 
-[node name="Bottom" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="Background" type="Panel" parent="."]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -65.0
-margin_top = -30.0
-margin_right = 65.0
-custom_styles/panel = SubResource( 1 )
-
-[node name="Name" type="MarginContainer" parent="Bottom"]
-margin_right = 130.0
-margin_bottom = 30.0
-
-[node name="Label" type="Label" parent="Bottom/Name"]
-margin_top = 8.0
-margin_right = 130.0
-margin_bottom = 22.0
-text = "Talha"
-align = 1
-
-[node name="Left" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = -65.0
-margin_top = -30.0
-margin_right = 65.0
-rect_rotation = 90.0
-rect_pivot_offset = Vector2( 65, 30 )
 custom_styles/panel = SubResource( 2 )
 
-[node name="Name" type="MarginContainer" parent="Left"]
-margin_right = 130.0
-margin_bottom = 30.0
-
-[node name="Label" type="Label" parent="Left/Name"]
-margin_top = 8.0
-margin_right = 130.0
-margin_bottom = 22.0
-text = "Talha"
-align = 1
-
-[node name="Right" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_left = 1.0
-anchor_top = 0.5
+[node name="Background2" type="Panel" parent="."]
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -65.0
-margin_top = -30.0
-margin_right = 65.0
-rect_rotation = -90.0
-rect_pivot_offset = Vector2( 65, 30 )
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Name" type="MarginContainer" parent="Right"]
-margin_right = 130.0
-margin_bottom = 30.0
+[node name="Top" type="CenterContainer" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="Right/Name"]
-margin_top = 8.0
-margin_right = 130.0
-margin_bottom = 22.0
+[node name="PanelContainer" type="PanelContainer" parent="Top"]
+margin_left = 109.0
+margin_right = 291.0
+margin_bottom = 47.0
+
+[node name="TurnIndicator" type="ColorRect" parent="Top/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 175.0
+margin_bottom = 40.0
+color = Color( 0.34902, 0.631373, 0.109804, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/PanelContainer"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 175.0
+margin_bottom = 40.0
+
+[node name="Name" type="MarginContainer" parent="Top/PanelContainer/HBoxContainer"]
+editor/display_folded = true
+margin_right = 82.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Top/PanelContainer/HBoxContainer/Name"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 62.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "Talha"
 align = 1
 
-[node name="Top" type="PanelContainer" parent="."]
+[node name="Bid" type="PanelContainer" parent="Top/PanelContainer/HBoxContainer"]
 editor/display_folded = true
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -65.0
-margin_top = -30.0
-margin_right = 65.0
-rect_rotation = 180.0
-rect_pivot_offset = Vector2( 65, 30 )
-custom_styles/panel = SubResource( 4 )
+margin_left = 86.0
+margin_right = 126.0
+margin_bottom = 33.0
+custom_styles/panel = SubResource( 1 )
 
-[node name="Name" type="MarginContainer" parent="Top"]
-editor/display_folded = true
-margin_right = 130.0
-margin_bottom = 30.0
-
-[node name="Label" type="Label" parent="Top/Name"]
-margin_top = 8.0
-margin_right = 130.0
-margin_bottom = 22.0
-text = "Ahmed"
-align = 1
-
-[node name="BottomBid" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -40.0
-margin_top = -60.0
+[node name="MarginContainer2" type="MarginContainer" parent="Top/PanelContainer/HBoxContainer/Bid"]
 margin_right = 40.0
-margin_bottom = -30.0
-custom_styles/panel = SubResource( 5 )
+margin_bottom = 33.0
+custom_constants/margin_right = 15
+custom_constants/margin_left = 15
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomBid"]
-margin_right = 80.0
-margin_bottom = 30.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="BottomBid/MarginContainer"]
-margin_left = 5.0
-margin_top = 8.0
-margin_right = 75.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Bid:"
-align = 1
-
-[node name="TopBid" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -40.0
-margin_top = 30.0
-margin_right = 40.0
-custom_styles/panel = SubResource( 6 )
-
-[node name="MarginContainer" type="MarginContainer" parent="TopBid"]
-margin_right = 80.0
-margin_bottom = 24.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="TopBid/MarginContainer"]
-margin_left = 5.0
+[node name="Label" type="Label" parent="Top/PanelContainer/HBoxContainer/Bid/MarginContainer2"]
+margin_left = 15.0
 margin_top = 5.0
-margin_right = 75.0
-margin_bottom = 19.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Bid:"
+margin_right = 25.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "5"
 align = 1
 
-[node name="LeftBid" type="PanelContainer" parent="."]
+[node name="NumWon" type="MarginContainer" parent="Top/PanelContainer/HBoxContainer"]
 editor/display_folded = true
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -95.0
-margin_right = 80.0
-margin_bottom = -65.0
-custom_styles/panel = SubResource( 7 )
+margin_left = 130.0
+margin_right = 168.0
+margin_bottom = 33.0
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="LeftBid"]
-margin_right = 80.0
-margin_bottom = 30.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="LeftBid/MarginContainer"]
-margin_left = 5.0
-margin_top = 8.0
-margin_right = 75.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Bid:"
-align = 1
-
-[node name="RightBid" type="PanelContainer" parent="."]
-editor/display_folded = true
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = -95.0
-margin_bottom = -65.0
-custom_styles/panel = SubResource( 8 )
-
-[node name="MarginContainer" type="MarginContainer" parent="RightBid"]
-margin_right = 80.0
-margin_bottom = 30.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="Label" type="Label" parent="RightBid/MarginContainer"]
-margin_left = 5.0
-margin_top = 8.0
-margin_right = 75.0
-margin_bottom = 22.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Bid:"
-align = 1
-
-[node name="BottomTricks" type="HBoxContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 75.0
-margin_top = -40.0
-
-[node name="TextureRect" type="TextureRect" parent="BottomTricks"]
-margin_right = 24.0
-margin_bottom = 40.0
-texture = ExtResource( 2 )
-
-[node name="NumWon" type="MarginContainer" parent="BottomTricks"]
-margin_left = 28.0
-margin_right = 52.0
-margin_bottom = 40.0
-custom_constants/margin_left = 5
-
-[node name="Label" type="Label" parent="BottomTricks/NumWon"]
-margin_left = 5.0
-margin_top = 13.0
-margin_right = 24.0
-margin_bottom = 27.0
-text = "x 0"
-
-[node name="LeftTricks" type="HBoxContainer" parent="."]
-editor/display_folded = true
-anchor_top = 0.5
-anchor_bottom = 0.5
+[node name="Label" type="Label" parent="Top/PanelContainer/HBoxContainer/NumWon"]
 margin_left = 10.0
-margin_top = -135.0
-margin_bottom = -135.0
-
-[node name="TextureRect" type="TextureRect" parent="LeftTricks"]
-margin_right = 24.0
-margin_bottom = 32.0
-texture = ExtResource( 2 )
-
-[node name="NumWon" type="MarginContainer" parent="LeftTricks"]
-margin_left = 28.0
-margin_right = 52.0
-margin_bottom = 32.0
-custom_constants/margin_left = 5
-
-[node name="Label" type="Label" parent="LeftTricks/NumWon"]
-margin_left = 5.0
-margin_top = 9.0
-margin_right = 24.0
-margin_bottom = 23.0
-text = "x 0"
-
-[node name="TopTricks" type="HBoxContainer" parent="."]
-editor/display_folded = true
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 75.0
 margin_top = 5.0
+margin_right = 28.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "x0"
+align = 1
 
-[node name="TextureRect" type="TextureRect" parent="TopTricks"]
-margin_right = 24.0
-margin_bottom = 32.0
-texture = ExtResource( 2 )
+[node name="Left" type="CenterContainer" parent="."]
+editor/display_folded = true
+anchor_bottom = 0.8
 
-[node name="NumWon" type="MarginContainer" parent="TopTricks"]
-margin_left = 28.0
-margin_right = 52.0
-margin_bottom = 32.0
-custom_constants/margin_left = 5
+[node name="PanelContainer" type="PanelContainer" parent="Left"]
+margin_top = 144.0
+margin_right = 47.0
+margin_bottom = 424.0
 
-[node name="Label" type="Label" parent="TopTricks/NumWon"]
-margin_left = 5.0
-margin_top = 9.0
-margin_right = 24.0
-margin_bottom = 23.0
-text = "x 0"
+[node name="TurnIndicator" type="ColorRect" parent="Left/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 273.0
+color = Color( 0.34902, 0.631373, 0.109804, 0 )
 
-[node name="RightTricks" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Left/PanelContainer"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 273.0
+
+[node name="Control" type="Control" parent="Left/PanelContainer/VBoxContainer"]
+margin_right = 33.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 33, 180 )
+rect_clip_content = true
+
+[node name="Name" type="MarginContainer" parent="Left/PanelContainer/VBoxContainer/Control"]
+editor/display_folded = true
+margin_left = 33.0
+margin_right = 213.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 180, 33 )
+rect_rotation = 90.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Left/PanelContainer/VBoxContainer/Control/Name"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Talha"
+align = 1
+
+[node name="Bid" type="PanelContainer" parent="Left/PanelContainer/VBoxContainer"]
+margin_top = 184.0
+margin_right = 33.0
+margin_bottom = 227.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Left/PanelContainer/VBoxContainer/Bid"]
+margin_right = 33.0
+margin_bottom = 43.0
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Left/PanelContainer/VBoxContainer/Bid/MarginContainer2"]
+margin_top = 10.0
+margin_right = 33.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+text = "5"
+align = 1
+
+[node name="NumWon" type="MarginContainer" parent="Left/PanelContainer/VBoxContainer"]
+margin_top = 231.0
+margin_right = 33.0
+margin_bottom = 266.0
+custom_constants/margin_top = 6
+custom_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="Left/PanelContainer/VBoxContainer/NumWon"]
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "x0"
+align = 1
+
+[node name="Right" type="CenterContainer" parent="."]
 editor/display_folded = true
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -60.0
-margin_top = -135.0
-margin_right = -40.0
-margin_bottom = -103.0
+anchor_bottom = 0.8
+margin_left = -47.0
+margin_top = -0.63208
 
-[node name="TextureRect" type="TextureRect" parent="RightTricks"]
-margin_right = 24.0
-margin_bottom = 32.0
-texture = ExtResource( 2 )
+[node name="PanelContainer" type="PanelContainer" parent="Right"]
+margin_top = 144.0
+margin_right = 47.0
+margin_bottom = 424.0
 
-[node name="NumWon" type="MarginContainer" parent="RightTricks"]
-margin_left = 28.0
-margin_right = 52.0
-margin_bottom = 32.0
-custom_constants/margin_left = 5
+[node name="TurnIndicator" type="ColorRect" parent="Right/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 273.0
+color = Color( 0.34902, 0.631373, 0.109804, 0 )
 
-[node name="Label" type="Label" parent="RightTricks/NumWon"]
-margin_left = 5.0
-margin_top = 9.0
-margin_right = 24.0
-margin_bottom = 23.0
-text = "x 0"
+[node name="VBoxContainer" type="VBoxContainer" parent="Right/PanelContainer"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 40.0
+margin_bottom = 273.0
+
+[node name="Control" type="Control" parent="Right/PanelContainer/VBoxContainer"]
+margin_right = 33.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 33, 180 )
+rect_clip_content = true
+
+[node name="Name" type="MarginContainer" parent="Right/PanelContainer/VBoxContainer/Control"]
+margin_top = 180.0
+margin_right = 180.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 180, 33 )
+rect_rotation = -90.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Right/PanelContainer/VBoxContainer/Control/Name"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Talha"
+align = 1
+
+[node name="Bid" type="PanelContainer" parent="Right/PanelContainer/VBoxContainer"]
+margin_top = 184.0
+margin_right = 33.0
+margin_bottom = 227.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Right/PanelContainer/VBoxContainer/Bid"]
+margin_right = 33.0
+margin_bottom = 43.0
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Right/PanelContainer/VBoxContainer/Bid/MarginContainer2"]
+margin_top = 10.0
+margin_right = 33.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 2 )
+text = "5"
+align = 1
+
+[node name="NumWon" type="MarginContainer" parent="Right/PanelContainer/VBoxContainer"]
+margin_top = 231.0
+margin_right = 33.0
+margin_bottom = 266.0
+custom_constants/margin_top = 6
+custom_constants/margin_bottom = 6
+
+[node name="Label" type="Label" parent="Right/PanelContainer/VBoxContainer/NumWon"]
+margin_top = 6.0
+margin_right = 33.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "x0"
+align = 1
+
+[node name="Bottom" type="CenterContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -47.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Bottom"]
+margin_left = 109.0
+margin_right = 291.0
+margin_bottom = 47.0
+
+[node name="TurnIndicator" parent="Bottom/PanelContainer" instance=ExtResource( 3 )]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/PanelContainer"]
+editor/display_folded = true
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 175.0
+margin_bottom = 40.0
+
+[node name="Name" type="MarginContainer" parent="Bottom/PanelContainer/HBoxContainer"]
+editor/display_folded = true
+margin_right = 82.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="Bottom/PanelContainer/HBoxContainer/Name"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 62.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Talha"
+align = 1
+
+[node name="Bid" type="PanelContainer" parent="Bottom/PanelContainer/HBoxContainer"]
+editor/display_folded = true
+margin_left = 86.0
+margin_right = 126.0
+margin_bottom = 33.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Bottom/PanelContainer/HBoxContainer/Bid"]
+margin_right = 40.0
+margin_bottom = 33.0
+custom_constants/margin_right = 15
+custom_constants/margin_left = 15
+
+[node name="Label" type="Label" parent="Bottom/PanelContainer/HBoxContainer/Bid/MarginContainer2"]
+margin_left = 15.0
+margin_top = 5.0
+margin_right = 25.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "5"
+align = 1
+
+[node name="NumWon" type="MarginContainer" parent="Bottom/PanelContainer/HBoxContainer"]
+editor/display_folded = true
+margin_left = 130.0
+margin_right = 168.0
+margin_bottom = 33.0
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
+
+[node name="Label" type="Label" parent="Bottom/PanelContainer/HBoxContainer/NumWon"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 28.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "x0"
+align = 1

@@ -2,6 +2,7 @@ extends Control
 
 var PreGameLobbyPlayerListing = preload("res://scenes/PreGameLobbyPlayerListing.tscn")
 var text_font = preload("res://fonts/text.tres")
+var small_number_font = preload("res://fonts/small_number.tres")
 
 onready var party_id_label = $MarginContainer/VBoxContainer/PartyIdLabel/Label
 onready var container = $MarginContainer/VBoxContainer/GridContainer
@@ -49,17 +50,20 @@ func pair_stats(playerScores, readyStatus):
 	return info
 
 func add_entry(name, score, ready):
-	add_value(name, Label.ALIGN_LEFT)
-	add_value(score, Label.ALIGN_RIGHT)
-	add_value("READY" if ready else "NOT READY", Label.ALIGN_RIGHT)
+	add_value(name, Label.ALIGN_LEFT, false)
+	add_value(score, Label.ALIGN_RIGHT, true)
+	add_value("READY" if ready else "NOT READY", Label.ALIGN_RIGHT, false)
 
-func add_value(val, alignment):
+func add_value(val, alignment, is_number):
 	var label = Label.new()
 	container.add_child(label)
 	label.add_to_group(GRIP_GROUP)
 	label.text = "%s" % val
 	label.align = alignment
-	label.set("custom_fonts/font", text_font)
+	if is_number:
+		label.set("custom_fonts/font", small_number_font)
+	else:
+		label.set("custom_fonts/font", text_font)
 
 func on_ready():
 	client.send_obj_to_server({
