@@ -49,4 +49,4 @@ func update_names(players):
 		label.add_to_group(PLAYER_NAMES)
 
 func update_start_game_button(players):
-	start_game_button.disabled = len(players) != 1
+	start_game_button.disabled = len(players) != 4

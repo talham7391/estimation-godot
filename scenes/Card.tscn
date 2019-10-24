@@ -9,3 +9,5 @@ margin_top = -217.0
 rect_pivot_offset = Vector2( 150, 217 )
 texture_normal = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

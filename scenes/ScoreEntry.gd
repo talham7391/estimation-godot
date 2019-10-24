@@ -1,7 +1,7 @@
-extends HBoxContainer
+extends MarginContainer
 
 func set_name(name):
-	$Name.text = name
+	$HBoxContainer/Name.text = name
 
 func set_score(score):
-	$Score.text = "%s" % score
+	$HBoxContainer/Score.text = "%s" % score

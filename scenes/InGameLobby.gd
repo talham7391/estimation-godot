@@ -32,6 +32,11 @@ func on_pre_game_lobby_state_changed():
 	var entries = pair_stats(playerScores, readyStatus)
 	for k in entries:
 		add_entry(k, entries[k]["score"], entries[k]["ready"])
+	
+	start_game_button.disabled = false
+	for status in readyStatus:
+		if not status["ready"]:
+			start_game_button.disabled = true
 
 func pair_stats(playerScores, readyStatus):
 	var ps = playerScores if playerScores != null else []

@@ -1,10 +1,10 @@
 extends Control
 
 onready var buttons = [
-	$CenterContainer/PanelContainer/VBoxContainer/Diamonds/Button,
-	$CenterContainer/PanelContainer/VBoxContainer/Spades/Button,
-	$CenterContainer/PanelContainer/VBoxContainer/Hearts/Button,
-	$CenterContainer/PanelContainer/VBoxContainer/Clubs/Button,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Diamonds/Button,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Spades/Button,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Hearts/Button,
+	$CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Clubs/Button,
 ]
 
 signal trump_chosen

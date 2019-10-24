@@ -1,88 +1,31 @@
 extends Control
 
-var TURN_COLOR = "#009e2b"
-var WAIT_COLOR = "#3a3a3a"
-
-var BID_COLOR = "#0099ff"
-var PASS_COLOR = "#5e5e5e"
-
-onready var bottom_name_label = $Bottom/Name/Label
-onready var left_name_label = $Left/Name/Label
-onready var top_name_label = $Top/Name/Label
-onready var right_name_label = $Right/Name/Label
-
-onready var bottom_style_box = $Bottom.get("custom_styles/panel")
-onready var left_style_box = $Left.get("custom_styles/panel")
-onready var top_style_box = $Top.get("custom_styles/panel")
-onready var right_style_box = $Right.get("custom_styles/panel")
-
-onready var bottom_bid_container = $BottomBid
-onready var left_bid_container = $LeftBid
-onready var top_bid_container = $TopBid
-onready var right_bid_container = $RightBid
-
-onready var bottom_bid_label = $BottomBid/MarginContainer/Label
-onready var left_bid_label = $LeftBid/MarginContainer/Label
-onready var top_bid_label = $TopBid/MarginContainer/Label
-onready var right_bid_label = $RightBid/MarginContainer/Label
-
-onready var bottom_bid_style_box = $BottomBid.get("custom_styles/panel")
-onready var left_bid_style_box = $LeftBid.get("custom_styles/panel")
-onready var top_bid_style_box = $TopBid.get("custom_styles/panel")
-onready var right_bid_style_box = $RightBid.get("custom_styles/panel")
-
-onready var bottom_tricks_won = $BottomTricks/NumWon/Label
-onready var left_tricks_won = $LeftTricks/NumWon/Label
-onready var top_tricks_won = $TopTricks/NumWon/Label
-onready var right_tricks_won = $RightTricks/NumWon/Label
-
-onready var labels_clockwise = [
-	bottom_name_label,
-	left_name_label,
-	top_name_label,
-	right_name_label,
-]
-
-onready var bids_containers = [
-	bottom_bid_container,
-	left_bid_container,
-	top_bid_container,
-	right_bid_container,
-]
-
-onready var bids_clockwise = [
-	bottom_bid_label,
-	left_bid_label,
-	top_bid_label,
-	right_bid_label,
-]
-
-onready var styles_clockwise = [
-	bottom_style_box,
-	left_style_box,
-	top_style_box,
-	right_style_box,
-]
-
-onready var bids_styles_clockwise = [
-	bottom_bid_style_box,
-	left_bid_style_box,
-	top_bid_style_box,
-	right_bid_style_box,
-]
-
-onready var tricks_won_clockwise = [
-	bottom_tricks_won,
-	left_tricks_won,
-	top_tricks_won,
-	right_tricks_won,
+onready var clockwise = [
+	{
+		"turn_indicator": $Bottom/PanelContainer/TurnIndicator,
+		"name_label": $Bottom/PanelContainer/HBoxContainer/Name/Label,
+		"bid_label": $Bottom/PanelContainer/HBoxContainer/Bid/MarginContainer/Label,
+		"num_won_label": $Bottom/PanelContainer/HBoxContainer/NumWon/Label,
+	},{
+		"turn_indicator": $Left/PanelContainer/TurnIndicator,
+		"name_label": $Left/PanelContainer/VBoxContainer/Control/Name/Label,
+		"bid_label": $Left/PanelContainer/VBoxContainer/Bid/MarginContainer/Label,
+		"num_won_label": $Left/PanelContainer/VBoxContainer/NumWon/Label,
+	},{
+		"turn_indicator": $Top/PanelContainer/TurnIndicator,
+		"name_label": $Top/PanelContainer/HBoxContainer/Name/Label,
+		"bid_label": $Top/PanelContainer/HBoxContainer/Bid/MarginContainer/Label,
+		"num_won_label": $Top/PanelContainer/HBoxContainer/NumWon/Label,
+	},{
+		"turn_indicator": $Right/PanelContainer/TurnIndicator,
+		"name_label": $Right/PanelContainer/VBoxContainer/Control/Name/Label,
+		"bid_label": $Right/PanelContainer/VBoxContainer/Bid/MarginContainer/Label,
+		"num_won_label": $Right/PanelContainer/VBoxContainer/NumWon/Label,
+	}
 ]
 
 func _ready():
-	bottom_style_box.bg_color = Color(WAIT_COLOR)
-	left_style_box.bg_color = Color(WAIT_COLOR)
-	top_style_box.bg_color = Color(WAIT_COLOR)
-	right_style_box.bg_color = Color(WAIT_COLOR)
+	set_turn_indicator_off_for_everyone()
 	
 	game_state.connect("turn_order_changed", self, "on_turn_order_changed")
 	on_turn_order_changed()
@@ -97,37 +40,38 @@ func _ready():
 	game_state.connect("player_tricks_changed", self, "on_player_tricks_changed")
 	on_player_tricks_changed()
 
+func set_turn_indicator_off_for_everyone():
+	for p in clockwise:
+		p["turn_indicator"].fade_out()
+
 func on_turn_order_changed():
 	var turn_order = game_state.in_game_state["turnOrder"]
 	if not turn_order:
 		return
 	var shifted_order = utils.put_me_first(turn_order)
-	for i in range(labels_clockwise.size()):
+	for i in range(clockwise.size()):
 		if i >= shifted_order.size():
-			labels_clockwise[i].text = "[ Empty ]"
+			clockwise[i]["name_label"].text = "[ Empty ]"
 		else:
-			labels_clockwise[i].text = shifted_order[i]["connectionId"]
+			clockwise[i]["name_label"].text = shifted_order[i]["connectionId"]
 
 func on_turn_of_changed():
 	var turn_of = game_state.in_game_state["turnOf"]
 	if turn_of == null:
 		return
+	set_turn_indicator_off_for_everyone()
 	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
-	for i in range(styles_clockwise.size()):
+	for i in range(clockwise.size()):
 		if i < shifted_order.size() and shifted_order[i]["connectionId"] == turn_of["connectionId"]:
-			styles_clockwise[i].bg_color = Color(TURN_COLOR)
-		else:
-			styles_clockwise[i].bg_color = Color(WAIT_COLOR)
+			clockwise[i]["turn_indicator"].fade_in()
 
 func on_bids_changed():
-	for c in bids_containers:
-		c.hide()
 	var turn_of = game_state.in_game_state["turnOf"]
 	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
 	for i in range(shifted_order.size()):
-		update_bid(shifted_order[i]["connectionId"], bids_containers[i], bids_clockwise[i], bids_styles_clockwise[i])
+		update_bid(shifted_order[i]["connectionId"], clockwise[i]["bid_label"])
 
-func update_bid(player, container, label, style):
+func update_bid(player, label):
 	var phase = game_state.in_game_state["phase"]
 	var bids = []
 	if phase == "INITIAL_BIDDING" or phase == "DECLARING_TRUMP":
@@ -136,22 +80,17 @@ func update_bid(player, container, label, style):
 		bids = game_state.in_game_state["finalBids"]
 	for i in bids:
 		if i["player"]["connectionId"] == player:
-			container.show()
-			label.text = "Bid: %s" % i["bid"]
+			label.text = "%s" % i["bid"]
 			if i["bid"] == "pass":
-				style.bg_color = Color(PASS_COLOR)
-			else:
-				style.bg_color = Color(BID_COLOR)
-			break
+				label.text = "P"
 
 func on_player_tricks_changed():
-	for tw in tricks_won_clockwise:
-		tw.text = "x0"
+	for tw in clockwise:
+		tw["num_won_label"].text = "x0"
 	var player_tricks = game_state.in_game_state["playerTricks"]
 	var shifted_order = utils.put_me_first(game_state.in_game_state["turnOrder"])
 	for i in range(shifted_order.size()):
-		tricks_won_clockwise[i].text = "x0"
 		for pt in player_tricks:
 			if pt["player"]["connectionId"] == shifted_order[i]["connectionId"]:
-				tricks_won_clockwise[i].text = "x%s" % pt["numWon"]
+				clockwise[i]["num_won_label"].text = "x%s" % pt["numWon"]
 				break
