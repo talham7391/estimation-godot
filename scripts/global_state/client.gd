@@ -50,6 +50,8 @@ func handle_message_from_server(mssg):
 		game_state.set_pre_game_lobby_state(mssg)
 	elif mssg["type"] == "GAME_STATE":
 		game_state.set_game_state(mssg)
+	elif mssg["type"] == "EVENT":
+		game_state.on_event_received(mssg)
 
 func close_connection():
 	client.disconnect_from_host()

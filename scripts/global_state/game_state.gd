@@ -103,3 +103,9 @@ func update_key(dest, src, key, signal_on_change):
 
 
 signal play_card
+
+signal bid_event
+
+func on_event_received(event):
+	if event["eventType"] == "BID":
+		emit_signal("bid_event", event)
