@@ -4,15 +4,15 @@
 
 # Estimation Godot
 
-The service this web app interfaces with:
+The service this mobile app interfaces with:
 https://github.com/talham7391/estimation-service
 
 # Gameplay
 
 Read the rules [here](https://www.jawaker.com/en/rules/estimation). This version has slightly different rules but the game plays the exact same way.
 
-1. One player must create the game. They will get a Game Id.
-2. Other players must join the game using that Game Id.
+1. One player must create the game. They will get a Party Id.
+2. Other players must join the game using that Party Id.
 3. Once everyone has joined, click "Start Game".
 4. Every one is taken to a screen where they can see their scores between games.
 5. Once anyone clicks "Start Game", all players are dealt cards and the bidding process begins.
