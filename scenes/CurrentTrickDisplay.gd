@@ -44,7 +44,7 @@ func on_current_trick_changed():
 			yield(get_tree().create_timer(1.35), "timeout")
 			
 			# figure out the winning card
-			var direction = winning_card_direction(cards_ordered)
+			var direction = winning_card_direction(previous_trick)
 			var dist = 50
 			var x = 0
 			var y = 0
@@ -128,11 +128,26 @@ func animate_in(card, i):
 		x = dist
 	c.fade_in(Vector2(x, y), 0.2)
 
-func winning_card_direction(cards_ordered):
-	var winning_card = utils.get_winning_card(cards_ordered)
-	for i in range(cards_ordered.size()):
-		var card = cards_ordered[i]
-		if winning_card["suit"] == card["suit"] and winning_card["rank"] == card["rank"]:
+func winning_card_direction(trick):
+	var turn_order = game_state.in_game_state["turnOrder"]
+	var shifted_order = utils.put_me_first(turn_order)
+	
+	var cards = []
+	for t in trick:
+		cards.append(t["card"])
+	var winning_card = utils.get_winning_card(cards)
+	
+	var winning_player = null
+	for t in trick:
+		if t["card"]["suit"] == winning_card["suit"] and t["card"]["rank"] == winning_card["rank"]:
+			winning_player = t["player"]
+	
+	if winning_player == null:
+		return -1
+	
+	for i in range(shifted_order.size()):
+		var player = shifted_order[i]
+		if winning_player["connectionId"] == player["connectionId"]:
 			return i
 	return -1
 
